@@ -6,7 +6,7 @@ import json
 
 def calculate_total(data):
     """
-    Recursively calculates the total for each element of JSON data
+    Recursively calculates the total for each element of JSON data.
     :param data: JSON data for which to calculate the total
     :return: total for the provided JSON data
     """
@@ -16,7 +16,7 @@ def calculate_total(data):
     elif isinstance(data, str):
         pass
     elif isinstance(data, list):
-        return sum(calculate_total(x) for x in data)
+        total += sum(calculate_total(x) for x in data)
     else:
         for item in data:
             total += calculate_total(item)
