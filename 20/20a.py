@@ -7,11 +7,11 @@ import itertools
 def get_factors(n):
     # noinspection LongLine,PyPep8
     """
-        Calculate the factors of a number.
-        Source: http://stackoverflow.com/questions/6800193/what-is-the-most-efficient-way-of-finding-all-the-factors-of-a-number-in-python
-        :param n: the number for which to find factors
-        :return: all factors of the input number
-        """
+    Calculate the factors of a number.
+    Source: http://stackoverflow.com/questions/6800193/what-is-the-most-efficient-way-of-finding-all-the-factors-of-a-number-in-python
+    :param n: the number for which to find factors
+    :return: all factors of the input number
+    """
     return set(itertools.chain.from_iterable((i, n // i) for i in range(1, int(n ** 0.5) + 1) if n % i == 0))
 
 
