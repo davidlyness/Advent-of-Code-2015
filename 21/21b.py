@@ -64,53 +64,31 @@ def get_cost(equipment):
 
 
 weapons = collections.defaultdict(dict)
-armors = collections.defaultdict(dict)
-rings = collections.defaultdict(dict)
+with open("weapons.txt") as f:
+    input_list = f.read().splitlines()
+for input_line in input_list:
+    name, cost, damage, armor = input_line.split()
+    weapons[name]['cost'], weapons[name]['damage'], weapons[name]['armor'] = [int(s) for s in (cost, damage, armor)]
 
-weapons['Dagger']['cost'] = 8
-weapons['Dagger']['damage'] = 4
-weapons['Shortsword']['cost'] = 10
-weapons['Shortsword']['damage'] = 5
-weapons['Warhammer']['cost'] = 25
-weapons['Warhammer']['damage'] = 6
-weapons['Longsword']['cost'] = 40
-weapons['Longsword']['damage'] = 7
-weapons['Greataxe']['cost'] = 74
-weapons['Greataxe']['damage'] = 8
-armors['Leather']['cost'] = 13
-armors['Leather']['armor'] = 1
-armors['Chainmail']['cost'] = 31
-armors['Chainmail']['armor'] = 2
-armors['Splintermail']['cost'] = 53
-armors['Splintermail']['armor'] = 3
-armors['Bandedmail']['cost'] = 75
-armors['Bandedmail']['armor'] = 4
-armors['Platemail']['cost'] = 102
-armors['Platemail']['armor'] = 5
-rings['Damage +1']['cost'] = 25
-rings['Damage +1']['damage'] = 1
-rings['Damage +1']['armor'] = 0
-rings['Damage +2']['cost'] = 50
-rings['Damage +2']['damage'] = 2
-rings['Damage +2']['armor'] = 0
-rings['Damage +3']['cost'] = 100
-rings['Damage +3']['damage'] = 3
-rings['Damage +3']['armor'] = 0
-rings['Defense +1']['cost'] = 20
-rings['Defense +1']['damage'] = 0
-rings['Defense +1']['armor'] = 1
-rings['Defense +2']['cost'] = 40
-rings['Defense +2']['damage'] = 0
-rings['Defense +2']['armor'] = 2
-rings['Defense +3']['cost'] = 80
-rings['Defense +3']['damage'] = 0
-rings['Defense +3']['armor'] = 3
+armors = collections.defaultdict(dict)
+with open("armors.txt") as f:
+    input_list = f.read().splitlines()
+for input_line in input_list:
+    name, cost, damage, armor = input_line.split()
+    armors[name]['cost'], armors[name]['damage'], armors[name]['armor'] = [int(s) for s in (cost, damage, armor)]
+
+rings = collections.defaultdict(dict)
+with open("rings.txt") as f:
+    input_list = f.read().splitlines()
+for input_line in input_list:
+    name, cost, damage, armor = input_line.split()
+    rings[name]['cost'], rings[name]['damage'], rings[name]['armor'] = [int(s) for s in (cost, damage, armor)]
 
 weapon_combinations = [weapon for weapon in weapons]
 armor_combinations = [''] + [armor for armor in armors]
 ring_combinations = [tuple()] + [(ring,) for ring in rings] + list(itertools.permutations([ring for ring in rings], 2))
 
-with open("input.txt") as f:
+with open("boss.txt") as f:
     input_list = f.read().splitlines()
 boss_hp = int(input_list[0].split(": ")[1])
 boss_damage = int(input_list[1].split(": ")[1])
